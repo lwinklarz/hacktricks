@@ -210,7 +210,7 @@ Underneath, this just uses **remote** **registry**, so the following command may
 reg.exe query \\<CA_SERVER>\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertSvc\Configuration\<CA_NAME>\PolicyModules\CertificateAuthority_MicrosoftDefault.Policy\ /v EditFlags 
 ```
 
-\*\*\*\*[**Certify**](https://github.com/GhostPack/Certify) and [**Certipy**](https://github.com/ly4k/Certipy) also checks for this and can be used to abuse this misconfiguration:
+[**Certify**](https://github.com/GhostPack/Certify) and [**Certipy**](https://github.com/ly4k/Certipy) also checks for this and can be used to abuse this misconfiguration:
 
 ```bash
 # Check for vulns, including this one
@@ -473,7 +473,7 @@ In this case, `John@corp.local` has `GenericWrite` over `Jane@corp.local`, and w
 
 First, we obtain the hash of `Jane` with for instance Shadow Credentials (using our `GenericWrite`).
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (2) (1) (1) (1) (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (2) (1) (1) (1) (1) (1) (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 Next, we change the `userPrincipalName` of `Jane` to be `Administrator`. Notice that we’re leaving out the `@corp.local` part.
 
@@ -522,7 +522,7 @@ In this case, `John@corp.local` has `GenericWrite` over `Jane@corp.local`, and w
 
 First, we obtain the hash of `Jane` with for instance Shadow Credentials (using our `GenericWrite`).
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (2) (1) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (2) (1) (1) (1) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 Next, we change the `userPrincipalName` of `Jane` to be `Administrator`. Notice that we’re leaving out the `@corp.local` part.
 
@@ -553,7 +553,7 @@ In this case, `John@corp.local` has `GenericWrite` over `Jane@corp.local`, and w
 
 First, we obtain the hash of `Jane` with for instance Shadow Credentials (using our `GenericWrite`).
 
-<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (2) (1) (1) (1) (2) (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13) (1) (1) (1) (2) (1) (1) (1) (1) (1) (2) (4).png" alt=""><figcaption></figcaption></figure>
 
 Next, we change the `userPrincipalName` of `Jane` to be `DC$@corp.local`.
 
@@ -573,7 +573,7 @@ Now, since this registry key applies to Schannel, we must use the certificate fo
 
 If we try to authenticate with the certificate and `-ldap-shell`, we will notice that we’re authenticated as `u:CORP\DC$`. This is a string that is sent by the server.
 
-<figure><img src="../../../.gitbook/assets/image (21) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (21) (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 One of the available commands for the LDAP shell is `set_rbcd` which will set Resource-Based Constrained Delegation (RBCD) on the target. So we could perform a RBCD attack to compromise the domain controller.
 
